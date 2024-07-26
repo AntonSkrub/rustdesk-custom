@@ -1149,7 +1149,7 @@ function showSettings() {
 function checkConnectStatus() {
     handler.check_mouse_time(); // trigger connection status updater
     self.timer(1s, function() {
-        var tmp = !!handler.get_option("stop-service");
+        var tmp = handler.get_option("stop-service") == "Y";
         if (tmp != service_stopped) {
             service_stopped = tmp;
             app.update();
@@ -1208,7 +1208,7 @@ function self.onMouse(evt) {
 }
 
 function check_if_overlay() {
-    if (handler.get_option('allow-remote-config-modification') == 'Y') {
+    if (handler.get_option('allow-remote-config-modification') != 'Y') {
         var time0 = getTime();
         handler.check_mouse_time();
         self.timer(120ms, function() {
